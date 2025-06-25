@@ -18,13 +18,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Adapted from public domain code in Tinkers Construct, CustomBowRenderer.java
- * https://github.com/SlimeKnights/TinkersConstruct/blob/master/src/main/java/
+ * <a href="https://github.com/SlimeKnights/TinkersConstruct/blob/master/src/main/java/">...</a>
  * tconstruct/client/CustomBowRenderer.java
  */
 @SideOnly(Side.CLIENT)
 public class GuardiansBowRenderer implements IItemRenderer {
 
-  private Minecraft mc = Minecraft.getMinecraft();
+  private final Minecraft mc = Minecraft.getMinecraft();
 
   @Override
   public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -48,7 +48,7 @@ public class GuardiansBowRenderer implements IItemRenderer {
 
     GL11.glPushMatrix();
 
-    IIcon icon = null;
+    IIcon icon;
     if (living instanceof EntityPlayer) {
       EntityPlayer player = (EntityPlayer) living;
       if (player.getItemInUse() != null) {

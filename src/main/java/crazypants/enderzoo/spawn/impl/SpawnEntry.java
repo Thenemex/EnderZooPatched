@@ -19,9 +19,9 @@ public class SpawnEntry implements ISpawnEntry {
   private int maxGroupSize = 3;
   private boolean isRemove = false;
 
-  private final List<IBiomeFilter> filters = new ArrayList<IBiomeFilter>();
+  private final List<IBiomeFilter> filters = new ArrayList<>();
 
-  private final List<DimensionFilter> dimFilters = new ArrayList<DimensionFilter>();
+  private final List<DimensionFilter> dimFilters = new ArrayList<>();
 
   public SpawnEntry(String id, String mobName, int rate) {
     this.id = id;

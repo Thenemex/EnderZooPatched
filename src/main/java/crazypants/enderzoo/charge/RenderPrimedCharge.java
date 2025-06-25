@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderPrimedCharge extends Render {
 
-  private RenderBlocks blockRenderer = new RenderBlocks();
+  private final RenderBlocks blockRenderer = new RenderBlocks();
 
   public RenderPrimedCharge() {
     shadowSize = 0.5F;

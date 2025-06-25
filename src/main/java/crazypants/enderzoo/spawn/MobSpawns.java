@@ -19,7 +19,7 @@ public final class MobSpawns {
 
   public static final MobSpawns instance = new MobSpawns();
 
-  private final List<ISpawnEntry> spawnEntries = new ArrayList<ISpawnEntry>();
+  private final List<ISpawnEntry> spawnEntries = new ArrayList<>();
 
   private MobSpawns() {
   }
@@ -87,7 +87,7 @@ public final class MobSpawns {
 
   }
 
-  protected static void printBiomeNames(BiomeGenBase[] biomes) {
+  private static void printBiomeNames(BiomeGenBase[] biomes) {
     for (BiomeGenBase biome : biomes) {
       if (biome != null) {
         System.out.print(biome.biomeName + ", ");

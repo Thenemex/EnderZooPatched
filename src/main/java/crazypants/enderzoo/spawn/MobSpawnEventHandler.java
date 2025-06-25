@@ -36,14 +36,14 @@ public class MobSpawnEventHandler {
 
   private static final String APPLIED_KEY = "ezModsApp";
 
-  private static List<EntityLivingBase> toApplyEZ = new ArrayList<EntityLivingBase>();
-  private static List<EntityLivingBase> toApplyOthers = new ArrayList<EntityLivingBase>();
+  private static final List<EntityLivingBase> toApplyEZ = new ArrayList<>();
+  private static final List<EntityLivingBase> toApplyOthers = new ArrayList<>();
 
-  private Map<EnumDifficulty, Double> ezHealthMods = new HashMap<EnumDifficulty, Double>();
-  private Map<EnumDifficulty, Double> ezAttackMods = new HashMap<EnumDifficulty, Double>();
+  private final Map<EnumDifficulty, Double> ezHealthMods = new HashMap<>();
+  private final Map<EnumDifficulty, Double> ezAttackMods = new HashMap<>();
 
-  private Map<EnumDifficulty, Double> otherHealthMods = new HashMap<EnumDifficulty, Double>();
-  private Map<EnumDifficulty, Double> otherAttackMods = new HashMap<EnumDifficulty, Double>();
+  private final Map<EnumDifficulty, Double> otherHealthMods = new HashMap<>();
+  private final Map<EnumDifficulty, Double> otherAttackMods = new HashMap<>();
 
   public MobSpawnEventHandler() {
 
@@ -165,7 +165,7 @@ public class MobSpawnEventHandler {
       return;
     }
     double curValue = att.getBaseValue();
-    //only change in incs of 2 so we dont have 1/2 hearts
+    //only change in incs of 2 so we don't have 1/2 hearts
     double newValue = (curValue * healthModifier) / 2;
     if (healthModifier >= 1) {
       newValue = Math.ceil(newValue);

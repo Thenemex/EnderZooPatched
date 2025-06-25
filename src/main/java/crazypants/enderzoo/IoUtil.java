@@ -3,11 +3,11 @@ package crazypants.enderzoo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 
 import org.apache.commons.io.IOUtils;
 
@@ -19,10 +19,9 @@ public class IoUtil {
 
   public static String readConfigFile(File copyTo, InputStream in, boolean replaceIfExists) throws IOException {
     if (!replaceIfExists && copyTo.exists()) {
-      return readStream(new FileInputStream(copyTo));
+      return readStream(Files.newInputStream(copyTo.toPath()));
     }
-    String output = copyTextTo(copyTo, in);
-    return output.toString();
+    return copyTextTo(copyTo, in);
   }
 
   public static String copyTextTo(File copyTo, InputStream from) throws IOException {
@@ -31,7 +30,7 @@ public class IoUtil {
     try {
       makePath(copyTo);
       writer = new BufferedWriter(new FileWriter(copyTo, false));
-      writer.write(output.toString());
+      writer.write(output);
     } finally {
       IOUtils.closeQuietly(writer);
     }

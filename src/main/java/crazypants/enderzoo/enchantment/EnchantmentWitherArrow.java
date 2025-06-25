@@ -25,23 +25,11 @@ public class EnchantmentWitherArrow extends Enchantment {
     return Config.enchantmentWitherArrowMaxEnchantability;
   }
 
-  @Override
-  public int getMaxLevel() {
-    return 1;
-  }
-
-  @Override
+    @Override
   public void func_151368_a(EntityLivingBase source, Entity entityHit, int p_151368_3_) {
     //calc damage modifier    
     if (entityHit instanceof EntityLivingBase) {
       ((EntityLivingBase) entityHit).addPotionEffect(new PotionEffect(Potion.wither.getId(), Config.enchantmentWitherArrowDuration));
     }
   }
-
-  //  @Override
-  //  public void func_151367_b(EntityLivingBase entityHit, Entity damageSource, int p_151367_3_) {
-  //    //other calculate modifier
-  //    //System.out.println("EnchantmentWitherArrow.func_151367_b: ");
-  //  }
-
 }

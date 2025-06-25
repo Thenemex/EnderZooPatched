@@ -52,7 +52,7 @@ public class BlockConfusingCharge extends BlockTNT implements ICharge {
     return res;
   }
 
-  private String name;
+  private final String name;
 
   protected BlockConfusingCharge() {
     this(NAME);
@@ -118,7 +118,7 @@ public class BlockConfusingCharge extends BlockTNT implements ICharge {
     int col = Items.potionitem.getColorFromDamage(8231);
     float r = (col >> 16 & 255) / 255.0F;
     float g = (col >> 8 & 255) / 255.0F;
-    float b = (col >> 0 & 255) / 255.0F;
+    float b = (col & 255) / 255.0F;
     Random random = world.rand;
     for (int i = 0; i < 100; ++i) {
       //double seed = random.nextDouble() * 20.0D;
@@ -132,8 +132,6 @@ public class BlockConfusingCharge extends BlockTNT implements ICharge {
       EntitySpellParticleFX entityfx = new EntitySpellParticleFX(world, x + motionX * 0.1, y + motionY * 0.1, z + motionZ * 0.1, motionX, motionY, motionZ);
       float colRan = 0.75F + random.nextFloat() * 0.25F;
       entityfx.setRBGColorF(r * colRan, g * colRan, b * colRan);
-      //entityfx.multiplyVelocity((float) (random.nextDouble() * 4.0D));
-      //entityfx.multiplyVelocity(0.1f);
       Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
 
     }

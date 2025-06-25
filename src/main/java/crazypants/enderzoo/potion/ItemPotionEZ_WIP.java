@@ -14,8 +14,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.brewing.PotionBrewedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -30,17 +28,12 @@ public class ItemPotionEZ_WIP extends ItemPotion {
 
     MinecraftForge.EVENT_BUS.register(res);
 
-    //    int entityID = EntityRegistry.findGlobalUniqueEntityId();
-    //    EntityRegistry.registerGlobalEntityID(EntityPotionEZ.class, "EntityPotionEZ", entityID);
-    //    EntityRegistry.registerModEntity(EntityPotionEZ.class, "EntityPotionEZ", entityID, this, 32, 20, true);
-
-    return res;
+      return res;
   }
 
   private static final String NAME = "itemWitherPotion";
 
-  private PotionEffect effect;
-  private List<PotionEffect> effects;
+    private final List<PotionEffect> effects;
 
   public ItemPotionEZ_WIP() {
 
@@ -51,7 +44,7 @@ public class ItemPotionEZ_WIP extends ItemPotion {
     setCreativeTab(EnderZooTab.tabEnderZoo);
     iconString = "potion";
 
-    effect = new PotionEffect(Potion.wither.getId(), 100);
+    PotionEffect effect = new PotionEffect(Potion.wither.getId(), 100);
     effects = Collections.singletonList(effect);
   }
 
@@ -92,7 +85,7 @@ public class ItemPotionEZ_WIP extends ItemPotion {
     return 0x000000;
   }
 
-  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @SuppressWarnings({ "unchecked"})
   @Override
   @SideOnly(Side.CLIENT)
   public void getSubItems(Item item, CreativeTabs tabs, List list) {
@@ -117,7 +110,7 @@ public class ItemPotionEZ_WIP extends ItemPotion {
     return s + StatCollector.translateToLocal("item.itemPotionEZ.wither.name");
   }
 
-  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @SuppressWarnings({ "unchecked"})
   @Override
   public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean aBool) {
     for (PotionEffect potioneffect : getEffects(stack)) {
@@ -138,20 +131,4 @@ public class ItemPotionEZ_WIP extends ItemPotion {
       }
     }
   }
-
-  @SubscribeEvent
-  public void onPotionBrewed(PotionBrewedEvent evt) {
-    //    System.out.println("ItemPotionEZ.onPotionBrewed: " + evt);
-    //    //evt.brewingStacks[0] = new ItemStack(Items.stick);
-    //    for(int i=0;i<3;i++) {
-    //      ItemStack stack = evt.brewingStacks[i];
-    //    //for (ItemStack stack : evt.brewingStacks) {
-    //      if(stack != null) {
-    //        if(stack.getItemDamage() == 8198) {
-    //          evt.brewingStacks[i] = new ItemStack(this, 1, 8192);
-    //        }
-    //      }        
-    //    }
-  }
-
 }

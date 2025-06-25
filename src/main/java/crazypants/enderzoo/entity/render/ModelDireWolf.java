@@ -10,21 +10,21 @@ import crazypants.enderzoo.entity.EntityDireWolf;
 public class ModelDireWolf extends ModelBase {
 
   /** main box for the wolf head */
-  public ModelRenderer wolfHeadMain;
+  public final ModelRenderer wolfHeadMain;
   /** The wolf's body */
-  public ModelRenderer wolfBody;
+  public final ModelRenderer wolfBody;
   /** Wolf'se first leg */
-  public ModelRenderer wolfLeg1;
+  public final ModelRenderer wolfLeg1;
   /** Wolf's second leg */
-  public ModelRenderer wolfLeg2;
+  public final ModelRenderer wolfLeg2;
   /** Wolf's third leg */
-  public ModelRenderer wolfLeg3;
+  public final ModelRenderer wolfLeg3;
   /** Wolf's fourth leg */
-  public ModelRenderer wolfLeg4;
+  public final ModelRenderer wolfLeg4;
   /** The wolf's tail */
-  ModelRenderer wolfTail;
+  final ModelRenderer wolfTail;
   /** The wolf's mane */
-  ModelRenderer wolfMane;
+  final ModelRenderer wolfMane;
 
   public ModelDireWolf() {
     float f = 0.0F;
@@ -135,21 +135,12 @@ public class ModelDireWolf extends ModelBase {
     wolfMane.setRotationPoint(-1.0F, 14.0F, -3.0F);
     wolfMane.rotateAngleX = wolfBody.rotateAngleX;
     wolfTail.setRotationPoint(-1.0F, 12.0F, 8.0F);
-    //      wolfLeg1.setRotationPoint(-2.5F, 16.0F, 7.0F);
-    //      wolfLeg2.setRotationPoint(0.5F, 16.0F, 7.0F);
-    //      wolfLeg3.setRotationPoint(-2.5F, 16.0F, -4.0F);
-    //      wolfLeg4.setRotationPoint(0.5F, 16.0F, -4.0F);
-    wolfLeg1.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
+      wolfLeg1.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
     wolfLeg2.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_78086_3_;
     wolfLeg3.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_78086_3_;
     wolfLeg4.rotateAngleX = MathHelper.cos(p_78086_2_ * 0.6662F) * 1.4F * p_78086_3_;
     //    }
 
-    //    //Begging head tilt I think
-    //    wolfHeadMain.rotateAngleZ = entitywolf.getInterestedAngle(p_78086_4_) + entitywolf.getShakeAngle(p_78086_4_, 0.0F);
-    //    wolfMane.rotateAngleZ = entitywolf.getShakeAngle(p_78086_4_, -0.08F);
-    //    wolfBody.rotateAngleZ = entitywolf.getShakeAngle(p_78086_4_, -0.16F);
-    //    wolfTail.rotateAngleZ = entitywolf.getShakeAngle(p_78086_4_, -0.2F);
   }
 
   @Override

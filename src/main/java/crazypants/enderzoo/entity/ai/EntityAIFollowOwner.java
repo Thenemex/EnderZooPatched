@@ -8,12 +8,12 @@ import crazypants.enderzoo.entity.IOwnable;
 public class EntityAIFollowOwner extends EntityAIBase {
 
   /** The child that is following its parent. */
-  IOwnable<? extends EntityCreature, ? extends EntityLivingBase> owned;
-  double followSpeed;
+  final IOwnable<? extends EntityCreature, ? extends EntityLivingBase> owned;
+  final double followSpeed;
   private int pathingTimer;
 
-  private double minDistanceSq;
-  private double maxDistanceSq;
+  private final double minDistanceSq;
+  private final double maxDistanceSq;
 
   public EntityAIFollowOwner(IOwnable<? extends EntityCreature, ? extends EntityLivingBase> owned, double minDist, double maxDist, double followSpeed) {
     this.owned = owned;
@@ -48,8 +48,7 @@ public class EntityAIFollowOwner extends EntityAIBase {
   }
 
   private double getDistanceSqFromOwner() {
-    double distance = owned.asEntity().getDistanceSqToEntity(owned.getOwner());
-    return distance;
+      return owned.asEntity().getDistanceSqToEntity(owned.getOwner());
   }
 
   @Override
@@ -57,11 +56,7 @@ public class EntityAIFollowOwner extends EntityAIBase {
     pathingTimer = 0;
   }
 
-  @Override
-  public void resetTask() {
-  }
-
-  @Override
+    @Override
   public void updateTask() {
     EntityLivingBase owner = owned.getOwner();
     if (owner == null) {

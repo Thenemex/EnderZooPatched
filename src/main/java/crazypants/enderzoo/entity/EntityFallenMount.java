@@ -27,13 +27,13 @@ public class EntityFallenMount extends EntityHorse implements IEnderZooMob {
 
   public static final int EGG_BG_COL = 0x365A25;
   public static final int EGG_FG_COL = 0xA0A0A0;
-  public static String NAME = "enderzoo.FallenMount";
+  public static final String NAME = "enderzoo.FallenMount";
 
-  public static final double MOUNTED_ATTACK_MOVE_SPEED = Config.fallenMountChargeSpeed;;
+  public static final double MOUNTED_ATTACK_MOVE_SPEED = Config.fallenMountChargeSpeed;
 
-  private boolean wasRidden = false;
+    private boolean wasRidden = false;
   private final EntityAINearestAttackableTarget findTargetAI;
-  private EntityAIAttackOnCollide attackAI;
+  private final EntityAIAttackOnCollide attackAI;
 
   private ItemStack armor;
 
@@ -89,17 +89,9 @@ public class EntityFallenMount extends EntityHorse implements IEnderZooMob {
     return false;
   }
 
-  @Override
-  public boolean isBreedingItem(ItemStack p_70877_1_) {
-    return false;
-  }
-
-  @Override
+    @Override
   public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount) {
-    if (type == EnumCreatureType.monster) {
-      return true;
-    }
-    return false;
+    return type == EnumCreatureType.monster;
   }
 
   @Override
@@ -198,7 +190,7 @@ public class EntityFallenMount extends EntityHorse implements IEnderZooMob {
 
   @Override
   public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_) {
-    //Need to pretend we arn't being ridden else it will update as if a player was riding us    
+    //Need to pretend we aren't being ridden else it will update as if a player was riding us
     Entity prev = riddenByEntity;
     riddenByEntity = null;
     super.moveEntityWithHeading(p_70612_1_, p_70612_2_);

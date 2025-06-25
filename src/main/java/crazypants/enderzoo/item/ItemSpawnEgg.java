@@ -22,6 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import crazypants.enderzoo.EnderZooTab;
 import crazypants.enderzoo.entity.MobInfo;
 
+@SuppressWarnings("UnusedReturnValue")
 public class ItemSpawnEgg extends Item {
 
   private static final String NAME = "itemSpawnEggEnderZoo";
@@ -59,7 +60,7 @@ public class ItemSpawnEgg extends Item {
   @Override
   public String getItemStackDisplayName(ItemStack stack) {
     int damage = MathHelper.clamp_int(stack.getItemDamage(), 0, MobInfo.values().length - 1);
-    String s = ("" + StatCollector.translateToLocal(getUnlocalizedName() + ".name")).trim();
+    String s = (StatCollector.translateToLocal(getUnlocalizedName() + ".name")).trim();
     String s1 = MobInfo.values()[damage].getName();
     if (s1 != null) {
       s = s + " " + StatCollector.translateToLocal("entity." + s1 + ".name");
@@ -67,7 +68,7 @@ public class ItemSpawnEgg extends Item {
     return s;
   }
 
-  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @SuppressWarnings({ "unchecked"})
   @Override
   public void getSubItems(Item item, CreativeTabs tab, List list) {
     for (MobInfo mob : MobInfo.values()) {

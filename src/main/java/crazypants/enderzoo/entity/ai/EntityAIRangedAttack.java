@@ -15,15 +15,15 @@ public class EntityAIRangedAttack extends EntityAIBase {
   private EntityLivingBase attackTarget;
 
   private int timeUntilNextAttack;
-  private double entityMoveSpeed;
+  private final double entityMoveSpeed;
 
   private int timeTargetVisible;
   private int timeTargetHidden;
-  private int minRangedAttackTime;
-  private int maxRangedAttackTime;
+  private final int minRangedAttackTime;
+  private final int maxRangedAttackTime;
 
-  private float attackRange;
-  private float attackRangeSq;
+  private final float attackRange;
+  private final float attackRangeSq;
 
   public EntityAIRangedAttack(IRangedAttackMob host, double moveSpeed, int timeBetweenAttacks, float attackRange) {
     this(host, moveSpeed, timeBetweenAttacks, timeBetweenAttacks, attackRange);
@@ -102,11 +102,6 @@ public class EntityAIRangedAttack extends EntityAIBase {
         rangeRatio = 1.0F;
       }
       rangedAttackEntityHost.attackEntityWithRangedAttack(attackTarget, rangeRatio);
-      timeUntilNextAttack = MathHelper.floor_float(rangeRatio * (maxRangedAttackTime - minRangedAttackTime) + minRangedAttackTime);
-
-    } else if (timeUntilNextAttack < 0) {
-      entityHost.setAttackTarget(attackTarget);
-      float rangeRatio = MathHelper.sqrt_double(distToTargetSq) / attackRange;
       timeUntilNextAttack = MathHelper.floor_float(rangeRatio * (maxRangedAttackTime - minRangedAttackTime) + minRangedAttackTime);
     }
   }

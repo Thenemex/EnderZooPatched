@@ -12,7 +12,7 @@ import crazypants.enderzoo.entity.EntityDireWolf;
 public class RenderDirewolf extends RenderLiving {
 
   //private static final ResourceLocation wolfTextures = new ResourceLocation("enderzoo:entity/dire_wolf.png");
-  private ResourceLocation wolfTextures = new ResourceLocation("enderzoo:entity/dire_wolf.png");
+  private final ResourceLocation wolfTextures = new ResourceLocation("enderzoo:entity/dire_wolf.png");
 
   private int debugCounter = 0;
 
@@ -40,29 +40,7 @@ public class RenderDirewolf extends RenderLiving {
     GL11.glScalef(scale - 0.1f, scale, scale);
   }
 
-  //  protected int shouldRenderPass(EntityDirewolf wolf, int pass, float p_77032_3_) {
-  //    if(pass == 0 && wolf.getWolfShaking()) {
-  //      float f1 = wolf.getBrightness(p_77032_3_) * wolf.getShadingWhileShaking(p_77032_3_);
-  //      bindTexture(wolfTextures);
-  //      GL11.glColor3f(f1, f1, f1);
-  //      return 1;
-  //    } else if(pass == 1 && wolf.isTamed()) {
-  //      bindTexture(wolfCollarTextures);
-  //      int j = wolf.getCollarColor();
-  //      GL11.glColor3f(EntitySheep.fleeceColorTable[j][0], EntitySheep.fleeceColorTable[j][1], EntitySheep.fleeceColorTable[j][2]);
-  //      return 1;
-  //      return -1;
-  //    } else {
-  //      return -1;
-  //    }
-  //  }
-
-  //  @Override
-  //  protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_) {
-  //    return this.shouldRenderPass((EntityDirewolf) p_77032_1_, p_77032_2_, p_77032_3_);
-  //  }
-
-  @Override
+    @Override
   protected float handleRotationFloat(EntityLivingBase p_77044_1_, float p_77044_2_) {
     return this.handleRotationFloat((EntityDireWolf) p_77044_1_, p_77044_2_);
   }

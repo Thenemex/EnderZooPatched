@@ -32,8 +32,8 @@ public class ItemConfusingDust extends Item {
   private void init() {
     GameRegistry.registerItem(this, NAME);
     try {
-      HashMap myPotionRequirements = (HashMap) ReflectionHelper.getPrivateValue(PotionHelper.class, null, "potionRequirements", "field_77927_l");
-      myPotionRequirements.put(Integer.valueOf(Potion.confusion.getId()), "0 & 1 & 2 & !3 & 0+6");
+      HashMap myPotionRequirements = ReflectionHelper.getPrivateValue(PotionHelper.class, null, "potionRequirements", "field_77927_l");
+      myPotionRequirements.put(Potion.confusion.getId(), "0 & 1 & 2 & !3 & 0+6");
     } catch (Exception e) {
       Log.error("ItemWitheringDust: Could not register wither potion recipe " + e);
     }

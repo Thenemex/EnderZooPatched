@@ -61,6 +61,7 @@ public class SpawnUtil {
     return foundY && onGround;
   }
 
+  @SuppressWarnings("rawtypes")
   public static boolean containsLiving(World world, Point3i blockCoord) {
     AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(blockCoord.x, blockCoord.y, blockCoord.z, blockCoord.x + 1, blockCoord.y + 1, blockCoord.z + 1);
     List ents = world.getEntitiesWithinAABB(EntityLivingBase.class, bb);
@@ -69,10 +70,7 @@ public class SpawnUtil {
 
   public static boolean isLiquid(World world, int x, int y, int z) {
     Block block = world.getBlock(x, y, z);
-    if(block.getMaterial().isLiquid()) {
-      return true;
-    }
-    return false;
+    return block.getMaterial().isLiquid();
   }
 
   public static boolean isSpaceAvailableForSpawn(World worldObj, EntityLiving entity, EntityCreature asCreature, boolean checkEntityCollisions,
@@ -90,10 +88,7 @@ public class SpawnUtil {
     if(!worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty()) {
       return false;
     }
-    if(!canSpawnInLiquid && worldObj.isAnyLiquid(entity.boundingBox)) {
-      return false;
-    }
-    return true;
+    return canSpawnInLiquid || !worldObj.isAnyLiquid(entity.boundingBox);
   }
 
   public static boolean isSpaceAvailableForSpawn(World worldObj, EntityCreature entity, boolean checkEntityCollisions) {

@@ -32,7 +32,7 @@ public class WailaCompat implements IWailaEntityProvider {
   public List<String> getWailaBody(Entity entity, List<String> currenttip, IWailaEntityAccessor accessor, IWailaConfigHandler config) {
     String name = EntityList.getEntityString(entity);
     String locKey = "entity." + name + ".desc.";
-    String loc = null;
+    String loc;
     for (int line = 1; !(loc = StatCollector.translateToLocal(locKey + line)).equals(locKey + line); line++) {
       currenttip.add(loc);
     }

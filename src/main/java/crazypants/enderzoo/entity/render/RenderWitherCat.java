@@ -15,8 +15,8 @@ import crazypants.enderzoo.entity.EntityWitherCat.GrowthMode;
 
 public class RenderWitherCat extends RenderLiving {
 
-  private ResourceLocation texture = new ResourceLocation("enderzoo:entity/wither_cat.png");
-  private ResourceLocation angryTexture = new ResourceLocation("enderzoo:entity/wither_cat_angry.png");
+  private final ResourceLocation texture = new ResourceLocation("enderzoo:entity/wither_cat.png");
+  private final ResourceLocation angryTexture = new ResourceLocation("enderzoo:entity/wither_cat_angry.png");
 
   public RenderWitherCat() {
     super(new ModelWitherCat(), 0.4F);
@@ -63,7 +63,7 @@ public class RenderWitherCat extends RenderLiving {
       GL11.glEnable(GL11.GL_BLEND);
       GL11.glBlendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
 
-      float blendFactor = 1.0F;
+      float blendFactor;
       EntityWitherCat cat = (EntityWitherCat) entity;
       float scale = cat.getScale();
       blendFactor = 1 - (cat.getAngryScale() - scale);
@@ -74,8 +74,8 @@ public class RenderWitherCat extends RenderLiving {
 
       char c0 = 61680;
       int j = c0 % 65536;
-      int k = c0 / 65536;
-      OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
+      int k = 0;
+      OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
       GL11.glEnable(GL11.GL_LIGHTING);
 
       return 1;

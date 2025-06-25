@@ -13,11 +13,11 @@ import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 public class TeleportHelper {
 
   private static final int DEFAULT_RND_TP_DISTANCE = 16;
-  private static Random rand = new Random();
+  private static final Random rand = new Random();
 
   public static boolean teleportRandomly(EntityLivingBase entity, int distance) {
     double d0 = entity.posX + (rand.nextDouble() - 0.5D) * distance;
-    double d1 = entity.posY + rand.nextInt(distance + 1) - distance / 2;
+    double d1 = entity.posY + rand.nextInt(distance + 1) - (double) distance / 2;
     double d2 = entity.posZ + (rand.nextDouble() - 0.5D) * distance;
     return teleportTo(entity, d0, d1, d2, false);
   }
@@ -74,8 +74,6 @@ public class TeleportHelper {
       if (foundGround) {
         entity.setPosition(entity.posX, entity.posY, entity.posZ);
         if (entity.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() && !entity.worldObj.isAnyLiquid(entity.boundingBox)) {
-          flag = true;
-        } else if (yInt <= 0) {
           flag = true;
         }
       }

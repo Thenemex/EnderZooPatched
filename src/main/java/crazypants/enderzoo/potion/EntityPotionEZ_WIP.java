@@ -29,27 +29,8 @@ public class EntityPotionEZ_WIP extends EntityThrowable {
     if (worldObj.isRemote) {
       return;
     }
-    //    List<PotionEffect> effects = EnderZoo.itemPotionEZ.getEffects(potion);
-    //    if(effects != null && !effects.isEmpty()) {
-    //      
-    //      AxisAlignedBB axisalignedbb = boundingBox.expand(4.0D, 2.0D, 4.0D);
-    //      List<EntityLivingBase> applyToEntities = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
-    //      if(applyToEntities != null && !applyToEntities.isEmpty()) {
-    //
-    //        for (EntityLivingBase entityHit : applyToEntities) {
-    //          double distanceFromHitSq = getDistanceSqToEntity(entityHit);
-    //          if(distanceFromHitSq < 16.0D) {
-    //            double distanceFromHitRatio = 1.0D - Math.sqrt(distanceFromHitSq) / 4.0D;
-    //            if(entityHit == objPosition.entityHit) {
-    //              distanceFromHitRatio = 1.0D;
-    //            }
-    //            applyEffects(effects, entityHit, distanceFromHitRatio);            
-    //          }
-    //        }
-    //      }
-    //    }
 
-    worldObj.playAuxSFX(2002, (int) Math.round(posX), (int) Math.round(posY), (int) Math.round(posZ), 16460);
+      worldObj.playAuxSFX(2002, (int) Math.round(posX), (int) Math.round(posY), (int) Math.round(posZ), 16460);
     setDead();
 
   }

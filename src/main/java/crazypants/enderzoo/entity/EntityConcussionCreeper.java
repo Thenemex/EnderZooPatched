@@ -15,6 +15,7 @@ import crazypants.enderzoo.EnderZoo;
 import crazypants.enderzoo.Log;
 import crazypants.enderzoo.config.Config;
 
+@SuppressWarnings("SameParameterValue")
 public class EntityConcussionCreeper extends EntityCreeper implements IEnderZooMob {
 
   public static final String NAME = "enderzoo.ConcussionCreeper";
@@ -109,7 +110,8 @@ public class EntityConcussionCreeper extends EntityCreeper implements IEnderZooM
     try {
       fTimeSinceIgnited.setInt(this, i);
     } catch (Exception e) {
-      e.printStackTrace();
+        //noinspection CallToPrintStackTrace
+        e.printStackTrace();
     }
   }
 
@@ -120,7 +122,8 @@ public class EntityConcussionCreeper extends EntityCreeper implements IEnderZooM
     try {
       return fTimeSinceIgnited.getInt(this);
     } catch (Exception e) {
-      e.printStackTrace();
+        //noinspection CallToPrintStackTrace
+        e.printStackTrace();
       return 0;
     }
   }
@@ -132,7 +135,8 @@ public class EntityConcussionCreeper extends EntityCreeper implements IEnderZooM
     try {
       return fFuseTime.getInt(this);
     } catch (Exception e) {
-      e.printStackTrace();
+        //noinspection CallToPrintStackTrace
+        e.printStackTrace();
       return 0;
     }
   }

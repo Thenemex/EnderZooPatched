@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 
 public class EntityAIAttackOnCollideAggressive extends EntityAIBase {
 
-  World worldObj;
-  EntityCreature attacker;
+  final World worldObj;
+  final EntityCreature attacker;
 
   int ticksToNextAttack;
-  double speedTowardsTarget;
-  boolean longMemory;
+  final double speedTowardsTarget;
+  final boolean longMemory;
   PathEntity entityPathEntity;
   Class<?> classTarget;
   private int ticksUntilNextPathingAttempt;
@@ -78,9 +78,9 @@ public class EntityAIAttackOnCollideAggressive extends EntityAIBase {
   @Override
   public boolean continueExecuting() {
     EntityLivingBase entitylivingbase = attacker.getAttackTarget();
-    return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!longMemory ? !attacker.getNavigator().noPath() : attacker
-        .isWithinHomeDistance(MathHelper.floor_double(entitylivingbase.posX), MathHelper.floor_double(entitylivingbase.posY),
-            MathHelper.floor_double(entitylivingbase.posZ))));
+    return entitylivingbase != null && (entitylivingbase.isEntityAlive() && (!longMemory ? !attacker.getNavigator().noPath() : attacker
+            .isWithinHomeDistance(MathHelper.floor_double(entitylivingbase.posX), MathHelper.floor_double(entitylivingbase.posY),
+                    MathHelper.floor_double(entitylivingbase.posZ))));
   }
 
   @Override
@@ -115,20 +115,7 @@ public class EntityAIAttackOnCollideAggressive extends EntityAIBase {
       targetY = entitylivingbase.boundingBox.minY;
       targetZ = entitylivingbase.posZ;
 
-      //ticksUntilNextPathingAttempt = failedPathFindingPenalty + 4 + attacker.getRNG().nextInt(7);
-
-//      if (attacker.getNavigator().getPath() != null) {
-//        PathPoint finalPathPoint = attacker.getNavigator().getPath().getFinalPathPoint();
-//        if (finalPathPoint != null && entitylivingbase.getDistanceSq(finalPathPoint.xCoord, finalPathPoint.yCoord, finalPathPoint.zCoord) < 1) {
-//          failedPathFindingPenalty = 0;
-//        } else {
-//          failedPathFindingPenalty += 10;
-//        }
-//      } else {
-//        failedPathFindingPenalty += 10;
-//      }
-
-      if (distToTargetSq > 1024.0D) {
+        if (distToTargetSq > 1024.0D) {
         ticksUntilNextPathingAttempt += 10;
       } else if (distToTargetSq > 256.0D) {
         ticksUntilNextPathingAttempt += 5;

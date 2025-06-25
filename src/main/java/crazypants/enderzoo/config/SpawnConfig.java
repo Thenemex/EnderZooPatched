@@ -18,12 +18,13 @@ public class SpawnConfig {
   public static List<SpawnEntry> loadSpawnConfig() {
     File coreFile = new File(Config.configDirectory, CONFIG_NAME_CORE);
 
-    String defaultVals = null;
+    String defaultVals;
     try {
       defaultVals = IoUtil.readConfigFile(coreFile, Config.CONFIG_RESOURCE_PATH + CONFIG_NAME_CORE, true);
     } catch (IOException e) {
       Log.error("Could not load core spawn config file " + coreFile + " from EnderZoo jar: " + e.getMessage());
-      e.printStackTrace();
+        //noinspection CallToPrintStackTrace
+        e.printStackTrace();
       return null;
     }
 
@@ -42,10 +43,10 @@ public class SpawnConfig {
     Log.info("Loaded " + result.size() + " entries from core spawn config.");
 
     File userFile = new File(Config.configDirectory, CONFIG_NAME_USER);
-    String userText = null;
+    String userText;
     try {
       userText = IoUtil.readConfigFile(userFile, Config.CONFIG_RESOURCE_PATH + CONFIG_NAME_USER, false);
-      if (userText == null || userText.trim().length() == 0) {
+      if (userText == null || userText.trim().isEmpty()) {
         Log.error("Empty user config file: " + userFile.getAbsolutePath());
       } else {
         List<SpawnEntry> userEntries = SpawnConfigParser.parseSpawnConfig(userText);
@@ -54,7 +55,8 @@ public class SpawnConfig {
       }
     } catch (Exception e) {
       Log.error("Could not load user defined spawn entries from file: " + CONFIG_NAME_USER);
-      e.printStackTrace();
+        //noinspection CallToPrintStackTrace
+        e.printStackTrace();
     }
     return result;
   }
@@ -66,6 +68,7 @@ public class SpawnConfig {
     }
   }
 
+  @SuppressWarnings({"ReassignedVariable", "SuspiciousMethodCalls"})
   private static void removeFrom(ISpawnEntry useEntry, List<SpawnEntry> result) {
     ISpawnEntry toRemove = null;
     for (ISpawnEntry entry : result) {

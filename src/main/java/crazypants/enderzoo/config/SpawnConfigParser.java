@@ -2,10 +2,11 @@ package crazypants.enderzoo.config;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.StringReader;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -18,7 +19,6 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import org.apache.commons.io.IOUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
@@ -44,7 +44,7 @@ public class SpawnConfigParser extends DefaultHandler {
   }
 
   public static List<SpawnEntry> parseSpawnConfig(File file) throws Exception {
-    BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+    BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(file.toPath()));
     InputSource is = new InputSource(bis);
     try {
       return parse(is);
@@ -99,7 +99,7 @@ public class SpawnConfigParser extends DefaultHandler {
       BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.SANDY,
       BiomeDictionary.Type.SNOWY, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.BEACH, };
 
-  private final List<SpawnEntry> result = new ArrayList<SpawnEntry>();
+  private final List<SpawnEntry> result = new ArrayList<>();
 
   private SpawnEntry currentEntry;
   private IBiomeFilter currentFilter;
@@ -113,7 +113,7 @@ public class SpawnConfigParser extends DefaultHandler {
   }
 
   @Override
-  public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+  public void startElement(String uri, String localName, String qName, Attributes attributes) {
     if (documentedClosed) {
       if (!printedDocumentClosedWarn) {
         Log.warn("Elements found after closing " + ELEMENT_ROOT + " they will be ignroed.");
@@ -186,11 +186,9 @@ public class SpawnConfigParser extends DefaultHandler {
   }
 
   @Override
-  public void endElement(String uri, String localName, String qName) throws SAXException {
+  public void endElement(String uri, String localName, String qName) {
     if (ELEMENT_ENTRY.equals(localName) && currentEntry != null) {
-      if (currentEntry != null) {
-        result.add(currentEntry);
-      }
+      result.add(currentEntry);
       currentEntry = null;
     } else if (ELEMENT_FILTER.equals(localName)) {
       if (currentFilter != null && currentEntry != null) {
@@ -216,7 +214,8 @@ public class SpawnConfigParser extends DefaultHandler {
       invalidEntryElement = true;
       return;
     }
-    mobName = mobName.trim();
+      assert mobName != null;
+      mobName = mobName.trim();
 
     int rate = getIntValue(ATT_RATE, attributes, -1);
     if (rate <= 0) {
@@ -295,7 +294,8 @@ public class SpawnConfigParser extends DefaultHandler {
 
     boolean isExclude = getBooleanValue(ATT_EXCLUDE, attributes, false);
     if (!typeEmpty) {
-      biomeType = biomeType.trim();
+        assert biomeType != null;
+        biomeType = biomeType.trim();
       if (BASE_LAND_TYPES.equals(biomeType)) {
         for (BiomeDictionary.Type type : BASE_LAND_TYPES_ARR) {
           currentFilter.addBiomeDescriptor(new BiomeDescriptor(type, isExclude));
@@ -310,28 +310,31 @@ public class SpawnConfigParser extends DefaultHandler {
       }
       return;
     }
-    currentFilter.addBiomeDescriptor(new BiomeDescriptor(biomeName.trim(), isExclude));
+      assert biomeName != null;
+      currentFilter.addBiomeDescriptor(new BiomeDescriptor(biomeName.trim(), isExclude));
   }
 
   protected boolean isEmptyString(String str) {
-    return str == null || str.trim().length() == 0;
+    return str == null || str.trim().isEmpty();
   }
 
   @Override
-  public void warning(SAXParseException e) throws SAXException {
+  public void warning(SAXParseException e) {
     Log.warn("Warning parsing Spawn config file: " + e.getMessage());
   }
 
   @Override
-  public void error(SAXParseException e) throws SAXException {
+  public void error(SAXParseException e) {
     Log.error("Error parsing Spawn config file: " + e.getMessage());
-    e.printStackTrace();
+      //noinspection CallToPrintStackTrace
+      e.printStackTrace();
   }
 
   @Override
-  public void fatalError(SAXParseException e) throws SAXException {
+  public void fatalError(SAXParseException e) {
     Log.error("Error parsing Spawn config file: " + e.getMessage());
-    e.printStackTrace();
+      //noinspection CallToPrintStackTrace
+      e.printStackTrace();
   }
 
   public static boolean getBooleanValue(String qName, Attributes attributes, boolean def) {
@@ -340,12 +343,12 @@ public class SpawnConfigParser extends DefaultHandler {
       return def;
     }
     val = val.toLowerCase().trim();
-    return val.equals("false") ? false : val.equals("true") ? true : def;
+    return !val.equals("false") && (val.equals("true") || def);
   }
 
   public static int getIntValue(String qName, Attributes attributes, int def) {
     try {
-      return Integer.parseInt(getStringValue(qName, attributes, def + ""));
+      return Integer.parseInt(Objects.requireNonNull(getStringValue(qName, attributes, def + "")));
     } catch (Exception e) {
       Log.warn("Could not parse a valid int for attribute " + qName + " with value " + getStringValue(qName, attributes, null));
       return def;
@@ -354,7 +357,7 @@ public class SpawnConfigParser extends DefaultHandler {
 
   public static float getFloatValue(String qName, Attributes attributes, float def) {
     try {
-      return Float.parseFloat(getStringValue(qName, attributes, def + ""));
+      return Float.parseFloat(Objects.requireNonNull(getStringValue(qName, attributes, def + "")));
     } catch (Exception e) {
       Log.warn("Could not parse a valid float for attribute " + qName + " with value " + getStringValue(qName, attributes, null));
       return def;
@@ -367,7 +370,7 @@ public class SpawnConfigParser extends DefaultHandler {
       return def;
     }
     val = val.trim();
-    if (val.length() <= 0) {
+    if (val.isEmpty()) {
       return null;
     }
     return val;

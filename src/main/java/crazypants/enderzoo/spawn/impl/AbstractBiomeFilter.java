@@ -11,11 +11,11 @@ import crazypants.enderzoo.spawn.IBiomeFilter;
 
 public abstract class AbstractBiomeFilter implements IBiomeFilter {
 
-  protected final List<BiomeDictionary.Type> types = new ArrayList<BiomeDictionary.Type>();
-  protected final List<BiomeDictionary.Type> typeExcludes = new ArrayList<BiomeDictionary.Type>();
+  protected final List<BiomeDictionary.Type> types = new ArrayList<>();
+  protected final List<BiomeDictionary.Type> typeExcludes = new ArrayList<>();
 
-  protected final List<String> names = new ArrayList<String>();
-  protected final List<String> nameExcludes = new ArrayList<String>();
+  protected final List<String> names = new ArrayList<>();
+  protected final List<String> nameExcludes = new ArrayList<>();
 
   @Override
   public void addBiomeDescriptor(IBiomeDescriptor biome) {

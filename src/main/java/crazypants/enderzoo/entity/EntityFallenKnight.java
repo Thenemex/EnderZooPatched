@@ -26,7 +26,7 @@ public class EntityFallenKnight extends EntitySkeleton implements IEnderZooMob {
   public static final int EGG_FG_COL = 0x365A25;
   public static final int EGG_BG_COL = 0xA0A0A0;
 
-  public static String NAME = "enderzoo.FallenKnight";
+  public static final String NAME = "enderzoo.FallenKnight";
 
   private static final double ATTACK_MOVE_SPEED = Config.fallenKnightChargeSpeed;
 
@@ -166,7 +166,7 @@ public class EntityFallenKnight extends EntitySkeleton implements IEnderZooMob {
     if (Config.fallenMountEnabled && rand.nextFloat() <= Config.fallenKnightChanceMounted) {
       mount = new EntityFallenMount(worldObj);
       mount.setLocationAndAngles(posX, posY, posZ, rotationYaw, 0.0F);
-      mount.onSpawnWithEgg((IEntityLivingData) null);
+      mount.onSpawnWithEgg(null);
       //NB: don;t check for entity collisions as we know the knight will collide
       if (!SpawnUtil.isSpaceAvailableForSpawn(worldObj, mount, false)) {
         mount = null;
@@ -318,37 +318,4 @@ public class EntityFallenKnight extends EntitySkeleton implements IEnderZooMob {
   protected void dropRareDrop(int p_70600_1_) {
   }
 
-  //public boolean attackEntityAsMob(Entity p_70652_1_)
-  //  {
-  //      if (super.attackEntityAsMob(p_70652_1_))
-  //      {
-  //          if (this.getSkeletonType() == 1 && p_70652_1_ instanceof EntityLivingBase)
-  //          {
-  //              ((EntityLivingBase)p_70652_1_).addPotionEffect(new PotionEffect(Potion.wither.id, 200));
-  //          }
-  //
-  //          return true;
-  //      }
-  //      else
-  //      {
-  //          return false;
-  //      }
-  //  }
-
-  //  public boolean attackEntityAsMob(Entity p_70652_1_)
-  //  {
-  //      boolean flag = super.attackEntityAsMob(p_70652_1_);
-  //
-  //      if (flag)
-  //      {
-  //          int i = this.worldObj.difficultySetting.getDifficultyId();
-  //
-  //          if (this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float)i * 0.3F)
-  //          {
-  //              p_70652_1_.setFire(2 * i);
-  //          }
-  //      }
-  //
-  //      return flag;
-  //  }
 }

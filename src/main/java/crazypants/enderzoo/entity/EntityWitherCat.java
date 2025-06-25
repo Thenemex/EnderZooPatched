@@ -28,9 +28,9 @@ public class EntityWitherCat extends EntityMob implements IOwnable<EntityWitherC
 
   public enum GrowthMode {
     NONE, GROW, SHRINK
-  };
+  }
 
-  public static final String NAME = "enderzoo.WitherCat";
+    public static final String NAME = "enderzoo.WitherCat";
   public static final int EGG_BG_COL = 0x303030;
   public static final int EGG_FG_COL = 0xFFFFFF;
 
@@ -48,7 +48,7 @@ public class EntityWitherCat extends EntityMob implements IOwnable<EntityWitherC
 
   private float lastScale = 1f;
   private EntityWitherWitch owner;
-  private EntityAIFollowOwner followTask;
+  private final EntityAIFollowOwner followTask;
 
   private boolean attackTargetChanged = false;
 
@@ -162,7 +162,7 @@ public class EntityWitherCat extends EntityMob implements IOwnable<EntityWitherC
           if (ownerHitBy == null) {
             owner.setRevengeTarget((EntityLivingBase) source.getEntity());
           }
-        } else if (owner == null) {
+        } else {
           setAttackTarget((EntityLivingBase) source.getEntity());
         }
       }
@@ -190,7 +190,7 @@ public class EntityWitherCat extends EntityMob implements IOwnable<EntityWitherC
       return;
     }
 
-    if (!worldObj.isRemote && attackTargetChanged) {
+    if (attackTargetChanged) {
       EntityUtil.cancelCurrentTasks(this);
       tasks.removeTask(followTask);
       if (getAttackTarget() == null) {
@@ -212,7 +212,7 @@ public class EntityWitherCat extends EntityMob implements IOwnable<EntityWitherC
     if (lastScale != scale) {
       lastScale = scale;
       setSize(DEF_WIDTH * scale, DEF_HEIGHT * scale);
-      float growthRatio = (lastScale - 1) / (ANGRY_SCALE - 1);
+      float growthRatio = (lastScale - 1);
       updateAttackDamage(growthRatio);
       updateHealth(growthRatio);
     }

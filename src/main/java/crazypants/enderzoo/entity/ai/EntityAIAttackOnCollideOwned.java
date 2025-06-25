@@ -7,10 +7,10 @@ import crazypants.enderzoo.entity.IOwnable;
 
 public class EntityAIAttackOnCollideOwned extends EntityAIAttackOnCollide {
 
-  private IOwnable<? extends EntityCreature, ? extends EntityLivingBase> ownable;
+  private final IOwnable<? extends EntityCreature, ? extends EntityLivingBase> ownable;
 
   private boolean retreating;
-  private EntityAIFollowOwner followTask;
+  private final EntityAIFollowOwner followTask;
 
   public EntityAIAttackOnCollideOwned(IOwnable<? extends EntityCreature, ? extends EntityLivingBase> ownable, Class<?> p_i1635_2_, double p_i1635_3_,
       boolean p_i1635_5_, EntityAIFollowOwner followTask) {

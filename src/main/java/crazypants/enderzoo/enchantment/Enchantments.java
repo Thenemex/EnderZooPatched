@@ -4,6 +4,7 @@ import net.minecraft.enchantment.Enchantment;
 import crazypants.enderzoo.Log;
 import crazypants.enderzoo.config.Config;
 
+@SuppressWarnings("UnusedReturnValue")
 public class Enchantments {
 
   private static Enchantments instance;

@@ -12,6 +12,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import crazypants.enderzoo.EnderZoo;
 import crazypants.enderzoo.Log;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public final class Config {
 
   public static class Section {
@@ -36,7 +37,7 @@ public final class Config {
   public static final List<Section> sections;
 
   static {
-    sections = new ArrayList<Section>();
+    sections = new ArrayList<>();
   }
 
   public static Configuration config;
@@ -121,8 +122,8 @@ public final class Config {
   public static boolean witherCatEnabled = true;
   public static double witherCatHealth = 12;
   public static double witherCatAttackDamage = 3;
-  public static double witherCatAngryHealth = 30;
-  public static double witherCatAngryAttackDamage = 9;
+  public static final double witherCatAngryHealth = 30;
+  public static final double witherCatAngryAttackDamage = 9;
   public static double witherCatAngryAttackDamageHardModifier = 2;
 
   public static final Section sectionDireWolf = new Section("Dire Wolf", "direWolf");
@@ -203,7 +204,8 @@ public final class Config {
       Config.processConfig(config);
     } catch (Exception e) {
       Log.error("EnderZoo has a problem loading it's configuration");
-      e.printStackTrace();
+        //noinspection CallToPrintStackTrace
+        e.printStackTrace();
     } finally {
       if (config.hasChanged()) {
         config.save();

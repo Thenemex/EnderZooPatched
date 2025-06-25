@@ -1,6 +1,5 @@
 package crazypants.enderzoo.entity;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +33,7 @@ import crazypants.enderzoo.vec.VecUtil;
 
 public class EntityEnderminy extends EntityMob implements IEnderZooMob {
 
-  public static String NAME = "enderzoo.Enderminy";
+  public static final String NAME = "enderzoo.Enderminy";
   public static final int EGG_BG_COL = 0x27624D;
   public static final int EGG_FG_COL = 0x212121;
 
@@ -59,9 +58,9 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
   private Entity lastEntityToAttack;
   private boolean isAggressive;
 
-  private boolean attackIfLookingAtPlayer = Config.enderminyAttacksPlayerOnSight;
-  private boolean attackCreepers = Config.enderminyAttacksCreepers;
-  private boolean groupAgroEnabled = Config.enderminyGroupAgro;
+  private final boolean attackIfLookingAtPlayer = Config.enderminyAttacksPlayerOnSight;
+  private final boolean attackCreepers = Config.enderminyAttacksCreepers;
+  private final boolean groupAgroEnabled = Config.enderminyGroupAgro;
 
   private final ClosestEntityComparator closestEntityComparator = new ClosestEntityComparator();
 
@@ -79,7 +78,7 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
 
   @Override
   protected boolean isValidLightLevel() {
-    return Config.enderminySpawnInLitAreas ? true : super.isValidLightLevel();
+    return Config.enderminySpawnInLitAreas || super.isValidLightLevel();
   }
 
   @Override
@@ -92,7 +91,7 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
   @Override
   protected void entityInit() {
     super.entityInit();
-    dataWatcher.addObject(SCREAMING_INDEX, new Byte((byte) 0));
+    dataWatcher.addObject(SCREAMING_INDEX, (byte) 0);
   }
 
   @Override
@@ -136,7 +135,7 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
       @SuppressWarnings("unchecked")
       List<EntityCreeper> creepers = worldObj.getEntitiesWithinAABB(EntityCreeper.class, bb);
       if(creepers != null && !creepers.isEmpty()) {
-        Collections.sort(creepers, closestEntityComparator);
+        creepers.sort(closestEntityComparator);
         for (EntityCreeper creeper : creepers) {
           if(creeper.canEntityBeSeen(this)) {
             return creeper;
@@ -228,7 +227,7 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
 
   protected boolean teleportRandomly(int distance) {
     double d0 = posX + (rand.nextDouble() - 0.5D) * distance;
-    double d1 = posY + rand.nextInt(distance + 1) - distance / 2;
+    double d1 = posY + rand.nextInt(distance + 1) - (double) distance / 2;
     double d2 = posZ + (rand.nextDouble() - 0.5D) * distance;
     return teleportTo(d0, d1, d2);
   }
@@ -414,12 +413,12 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
   }
 
   public void setScreaming(boolean p_70819_1_) {
-    dataWatcher.updateObject(SCREAMING_INDEX, Byte.valueOf((byte) (p_70819_1_ ? 1 : 0)));
+    dataWatcher.updateObject(SCREAMING_INDEX, (byte) (p_70819_1_ ? 1 : 0));
   }
 
   private final class ClosestEntityComparator implements Comparator<EntityCreeper> {
 
-    Vec3 pos = Vec3.createVectorHelper(0, 0, 0);
+    final Vec3 pos = Vec3.createVectorHelper(0, 0, 0);
 
     @Override
     public int compare(EntityCreeper o1, EntityCreeper o2) {

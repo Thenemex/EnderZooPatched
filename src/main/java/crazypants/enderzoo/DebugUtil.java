@@ -7,7 +7,6 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
@@ -54,7 +53,7 @@ public class DebugUtil {
       return;
     }
     MovingObjectPosition mo = Minecraft.getMinecraft().objectMouseOver;
-    if (mo != null && mo.entityHit != null && mo.entityHit instanceof EntityLivingBase) {
+    if (mo != null && mo.entityHit instanceof EntityLivingBase) {
       EntityLivingBase el = (EntityLivingBase) mo.entityHit;
       if (el != lastMouseOver) {
         double baseAttack = 0;
@@ -70,14 +69,5 @@ public class DebugUtil {
     } else {
       lastMouseOver = null;
     }
-
   }
-
-  @SubscribeEvent
-  public void onMonsterSpawn(LivingSpawnEvent evt) {
-    if (evt.entityLiving != null) { //&& !evt.entityLiving.getClass().getName().contains("enderzoo")) {
-      //      evt.setResult(Result.DENY);
-    }
-  }
-
 }

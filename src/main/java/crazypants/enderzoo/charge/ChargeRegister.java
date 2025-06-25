@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class ChargeRegister {
 
-  public static ChargeRegister instance = new ChargeRegister();
+  public static final ChargeRegister instance = new ChargeRegister();
 
-  private Map<Integer, ICharge> charges = new HashMap<Integer, ICharge>();
+  private final Map<Integer, ICharge> charges = new HashMap<>();
 
   private int nextId = 0;
 

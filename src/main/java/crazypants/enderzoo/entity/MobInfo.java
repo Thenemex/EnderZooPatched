@@ -27,7 +27,7 @@ public enum MobInfo {
   final double maxHealth;
   final double attackDamage;
 
-  private MobInfo(Class<? extends EntityLiving> clz, String name, int bgCol, int fgCol, boolean enabled, double baseHealth, double baseAttack) {
+  MobInfo(Class<? extends EntityLiving> clz, String name, int bgCol, int fgCol, boolean enabled, double baseHealth, double baseAttack) {
     this.clz = clz;
     this.name = name;
     this.bgCol = bgCol;

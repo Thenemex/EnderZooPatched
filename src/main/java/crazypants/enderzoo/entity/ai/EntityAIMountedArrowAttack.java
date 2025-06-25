@@ -21,23 +21,23 @@ public class EntityAIMountedArrowAttack extends EntityAIBase {
 
   private final IRangedAttackMob rangedAttackEntityHost;
   private EntityLivingBase attackTarget;
-  private double entityMoveSpeed;
-  private double mountedEntityMoveSpeed;
+  private final double entityMoveSpeed;
+  private final double mountedEntityMoveSpeed;
 
   private int timeUntilNextAttack;
   private int timeTargetVisible;
 
-  private int minRangedAttackTime;
-  private int maxRangedAttackTime;
+  private final int minRangedAttackTime;
+  private final int maxRangedAttackTime;
 
-  private float attackRange;
-  private float attackRangeSq;
+  private final float attackRange;
+  private final float attackRangeSq;
 
   private int runAwayTimer = 0;
 
   private PathPoint runningAwayTo;
 
-  private boolean useRunAwayTactic;
+  private final boolean useRunAwayTactic;
   
   public EntityAIMountedArrowAttack(IRangedAttackMob host, double moveSpeed, double mountedEntityMoveSpeed, int minAttackTime, int maxAttackTime,
       float attackRange, boolean useRunAwayTactic) {

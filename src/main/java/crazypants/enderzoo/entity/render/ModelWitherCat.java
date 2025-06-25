@@ -14,21 +14,21 @@ import crazypants.enderzoo.entity.EntityWitherCat;
 public class ModelWitherCat extends ModelBase {
 
   /** The back left leg model for the Ocelot. */
-  ModelRenderer ocelotBackLeftLeg;
+  final ModelRenderer ocelotBackLeftLeg;
   /** The back right leg model for the Ocelot. */
-  ModelRenderer ocelotBackRightLeg;
+  final ModelRenderer ocelotBackRightLeg;
   /** The front left leg model for the Ocelot. */
-  ModelRenderer ocelotFrontLeftLeg;
+  final ModelRenderer ocelotFrontLeftLeg;
   /** The front right leg model for the Ocelot. */
-  ModelRenderer ocelotFrontRightLeg;
+  final ModelRenderer ocelotFrontRightLeg;
   /** The tail model for the Ocelot. */
-  ModelRenderer ocelotTail;
+  final ModelRenderer ocelotTail;
   /** The second part of tail model for the Ocelot. */
-  ModelRenderer ocelotTail2;
+  final ModelRenderer ocelotTail2;
   /** The head model for the Ocelot. */
-  ModelRenderer ocelotHead;
+  final ModelRenderer ocelotHead;
   /** The body model for the Ocelot. */
-  ModelRenderer ocelotBody;
+  final ModelRenderer ocelotBody;
   int field_78163_i = 1;
   
   public ModelWitherCat() {
@@ -165,7 +165,7 @@ public class ModelWitherCat extends ModelBase {
       ++ocelotBody.rotationPointY;
       ocelotHead.rotationPointY += 2.0F;
       ++ocelotTail.rotationPointY;
-      ocelotTail2.rotationPointY += -4.0F;
+      ocelotTail2.rotationPointY -= 4.0F;
       ocelotTail2.rotationPointZ += 2.0F;
       ocelotTail.rotateAngleX = ((float) Math.PI / 2F);
       ocelotTail2.rotateAngleX = ((float) Math.PI / 2F);
@@ -178,26 +178,6 @@ public class ModelWitherCat extends ModelBase {
       field_78163_i = 2;
     }
     //      else if (entityocelot.isSitting())
-    //      {
-    //          ocelotBody.rotateAngleX = ((float)Math.PI / 4F);
-    //          ocelotBody.rotationPointY += -4.0F;
-    //          ocelotBody.rotationPointZ += 5.0F;
-    //          ocelotHead.rotationPointY += -3.3F;
-    //          ++ocelotHead.rotationPointZ;
-    //          ocelotTail.rotationPointY += 8.0F;
-    //          ocelotTail.rotationPointZ += -2.0F;
-    //          ocelotTail2.rotationPointY += 2.0F;
-    //          ocelotTail2.rotationPointZ += -0.8F;
-    //          ocelotTail.rotateAngleX = 1.7278761F;
-    //          ocelotTail2.rotateAngleX = 2.670354F;
-    //          ocelotFrontLeftLeg.rotateAngleX = ocelotFrontRightLeg.rotateAngleX = -0.15707964F;
-    //          ocelotFrontLeftLeg.rotationPointY = ocelotFrontRightLeg.rotationPointY = 15.8F;
-    //          ocelotFrontLeftLeg.rotationPointZ = ocelotFrontRightLeg.rotationPointZ = -7.0F;
-    //          ocelotBackLeftLeg.rotateAngleX = ocelotBackRightLeg.rotateAngleX = -((float)Math.PI / 2F);
-    //          ocelotBackLeftLeg.rotationPointY = ocelotBackRightLeg.rotationPointY = 21.0F;
-    //          ocelotBackLeftLeg.rotationPointZ = ocelotBackRightLeg.rotationPointZ = 1.0F;
-    //          field_78163_i = 3;
-    //      }
     else {
       field_78163_i = 1;
     }

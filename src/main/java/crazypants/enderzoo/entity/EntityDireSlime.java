@@ -32,7 +32,7 @@ public class EntityDireSlime extends EntityMagmaCube implements IEnderZooMob {
     public final double attackDamage;
     public final double chance;
 
-    private SlimeConf(int size, double health, double attackDamage, double chance) {
+    SlimeConf(int size, double health, double attackDamage, double chance) {
       this.size = size;
       this.health = health;
       this.attackDamage = attackDamage;
@@ -146,8 +146,7 @@ public class EntityDireSlime extends EntityMagmaCube implements IEnderZooMob {
 
   @Override
   protected int getAttackStrength() {
-    int res = (int) getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-    return res;
+    return (int) getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
   }
 
   // This is called every tick on onUpdate(), so avoid moving the slime around twice per tick.

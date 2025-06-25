@@ -61,7 +61,7 @@ public class EntityUtil {
   public static void cancelCurrentTasks(EntityLiving ent) {
     Iterator<?> iterator = ent.tasks.taskEntries.iterator();
 
-    List<EntityAITasks.EntityAITaskEntry> currentTasks = new ArrayList<EntityAITasks.EntityAITaskEntry>();
+    List<EntityAITasks.EntityAITaskEntry> currentTasks = new ArrayList<>();
     while (iterator.hasNext()) {
       EntityAITaskEntry entityaitaskentry = (EntityAITasks.EntityAITaskEntry) iterator.next();
       if(entityaitaskentry != null) {

@@ -99,13 +99,7 @@ public class EntityDireWolf extends EntityMob implements IEnderZooMob {
     return 6;
   }
 
-  //  @Override
-  //  public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount) {
-  //    System.out.println("EntityDireWolf.isCreatureType: " + type);
-  //    return type.getCreatureClass().isAssignableFrom(this.getClass());
-  //  }
-
-  private void updateAngry() {
+    private void updateAngry() {
     getDataWatcher().updateObject(ANGRY_INDEX, getAttackTarget() != null ? (byte) 1 : (byte) 0);
   }
 

@@ -21,8 +21,8 @@ public class RenderEnderminy extends RenderLiving {
   private static final ResourceLocation endermanEyesTexture = new ResourceLocation("enderzoo:" + PATH + "enderminy_eyes.png");
   private static final ResourceLocation endermanTextures = new ResourceLocation("enderzoo:" + PATH + "enderminy.png");
 
-  private ModelEnderman endermanModel;
-  private Random rnd = new Random();
+  private final ModelEnderman endermanModel;
+  private final Random rnd = new Random();
 
   public RenderEnderminy() {
     super(new ModelEnderman(), 0.5F);
@@ -55,16 +55,12 @@ public class RenderEnderminy extends RenderLiving {
       GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
       GL11.glDisable(GL11.GL_LIGHTING);
 
-      if (p_77032_1_.isInvisible()) {
-        GL11.glDepthMask(false);
-      } else {
-        GL11.glDepthMask(true);
-      }
+      GL11.glDepthMask(!p_77032_1_.isInvisible());
 
       char c0 = 61680;
       int j = c0 % 65536;
-      int k = c0 / 65536;
-      OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
+      int k = 0;
+      OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
       GL11.glEnable(GL11.GL_LIGHTING);
       GL11.glColor4f(1.0F, 1.0F, 1.0F, f1);
       return 1;

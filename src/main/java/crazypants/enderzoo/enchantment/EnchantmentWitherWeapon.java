@@ -26,12 +26,7 @@ public class EnchantmentWitherWeapon extends Enchantment {
     return Config.enchantmentWitherWeaponMaxEnchantability;
   }
 
-  @Override
-  public int getMaxLevel() {
-    return 1;
-  }
-
-  @Override
+    @Override
   public void func_151368_a(EntityLivingBase source, Entity entityHit, int p_151368_3_) {
     //calc damage modifier    
     if (entityHit instanceof EntityLivingBase) {

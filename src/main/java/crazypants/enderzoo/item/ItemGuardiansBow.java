@@ -13,7 +13,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -30,10 +29,10 @@ public class ItemGuardiansBow extends ItemBow {
   @SideOnly(Side.CLIENT)
   private IIcon[] iconArray;
 
-  private int drawTime = Config.guardiansBowDrawTime;
-  private float damageBonus = Config.guardiansBowDamageBonus;
-  private float forceMultiplier = Config.guardiansBowForceMultiplier;
-  private float fovMultiplier = Config.guardiansBowFovMultiplier;
+  private final int drawTime = Config.guardiansBowDrawTime;
+  private final float damageBonus = Config.guardiansBowDamageBonus;
+  private final float forceMultiplier = Config.guardiansBowForceMultiplier;
+  private final float fovMultiplier = Config.guardiansBowFovMultiplier;
 
   public static ItemGuardiansBow create() {
     ItemGuardiansBow res = new ItemGuardiansBow();
@@ -125,18 +124,8 @@ public class ItemGuardiansBow extends ItemBow {
 
   }
 
-  @Override
-  public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
-    return stack;
-  }
-
-  @Override
-  public int getMaxItemUseDuration(ItemStack p_77626_1_) {
-    return 72000;
-  }
-
-  /**
-   * returns the action that specifies what animation to play when the items is
+    /**
+   * returns the action that specifies what animation to play when the items are
    * being used
    */
   @Override
@@ -161,25 +150,7 @@ public class ItemGuardiansBow extends ItemBow {
     return iicon;
   }
 
-  @Override
-  public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-    ArrowNockEvent event = new ArrowNockEvent(player, stack);
-    MinecraftForge.EVENT_BUS.post(event);
-    if (event.isCanceled()) {
-      return event.result;
-    }
-    if (player.capabilities.isCreativeMode || player.inventory.hasItem(Items.arrow)) {
-      player.setItemInUse(stack, getMaxItemUseDuration(stack));
-    }
-    return stack;
-  }
-
-  @Override
-  public int getItemEnchantability() {
-    return 1;
-  }
-
-  @Override
+    @Override
   @SideOnly(Side.CLIENT)
   public void registerIcons(IIconRegister p_94581_1_) {
     itemIcon = p_94581_1_.registerIcon(getIconString() + "_standby");

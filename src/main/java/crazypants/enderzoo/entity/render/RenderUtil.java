@@ -27,23 +27,7 @@ public final class RenderUtil {
       GL11.glPushMatrix();
       GL11.glRotatef(-entity.renderYawOffset, 0, 1, 0);
 
-      Tessellator tes = Tessellator.instance;
-      tes.startDrawingQuads();
-      tes.setColorOpaque_F(1, 1, 1);
-
-      double width = (bb.maxX - bb.minX) / 2;
-      double height = bb.maxY - bb.minY;
-      double depth = (bb.maxZ - bb.minZ) / 2;
-
-      tes.addVertex(-width, 0, 0);
-      tes.addVertex(width, 0, 0);
-      tes.addVertex(width, height, 0);
-      tes.addVertex(-width, height, 0);
-
-      tes.addVertex(0, 0, -depth);
-      tes.addVertex(0, 0, depth);
-      tes.addVertex(0, height, depth);
-      tes.addVertex(0, height, -depth);
+      Tessellator tes = getTessellator(bb);
       tes.draw();
 
       GL11.glPopMatrix();
@@ -53,6 +37,27 @@ public final class RenderUtil {
       GL11.glEnable(GL11.GL_LIGHTING);
       GL11.glEnable(GL11.GL_CULL_FACE);
     }
+  }
+
+  private static Tessellator getTessellator(AxisAlignedBB bb) {
+    Tessellator tes = Tessellator.instance;
+    tes.startDrawingQuads();
+    tes.setColorOpaque_F(1, 1, 1);
+
+    double width = (bb.maxX - bb.minX) / 2;
+    double height = bb.maxY - bb.minY;
+    double depth = (bb.maxZ - bb.minZ) / 2;
+
+    tes.addVertex(-width, 0, 0);
+    tes.addVertex(width, 0, 0);
+    tes.addVertex(width, height, 0);
+    tes.addVertex(-width, height, 0);
+
+    tes.addVertex(0, 0, -depth);
+    tes.addVertex(0, 0, depth);
+    tes.addVertex(0, height, depth);
+    tes.addVertex(0, height, -depth);
+    return tes;
   }
 
   private RenderUtil() {

@@ -20,7 +20,7 @@ public class GuiConfigFactoryEnderZoo extends GuiConfig {
 
   @SuppressWarnings("rawtypes")
   private static List<IConfigElement> getConfigElements(GuiScreen parent) {
-    List<IConfigElement> list = new ArrayList<IConfigElement>();
+    List<IConfigElement> list = new ArrayList<>();
     String prefix = "enderzoo.config.";
 
     for (Section section : Config.sections) {

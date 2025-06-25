@@ -10,9 +10,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ModelDireSlime extends ModelBase {
-  ModelRenderer[] sliceRenderers = new ModelRenderer[16];
-  ModelRenderer[] coreRenderers = new ModelRenderer[24];
-  ModelRenderer coreRendererClay;
+  final ModelRenderer[] sliceRenderers = new ModelRenderer[16];
+  final ModelRenderer[] coreRenderers = new ModelRenderer[24];
+  final ModelRenderer coreRendererClay;
   ModelRenderer coreRenderer;
 
   public ModelDireSlime() {
@@ -61,8 +61,8 @@ public class ModelDireSlime extends ModelBase {
   public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_) {
     this.coreRenderer.render(p_78088_7_);
 
-    for (int i = 0; i < this.sliceRenderers.length; ++i) {
-      this.sliceRenderers[i].render(p_78088_7_);
-    }
+      for (ModelRenderer sliceRenderer : this.sliceRenderers) {
+          sliceRenderer.render(p_78088_7_);
+      }
   }
 }

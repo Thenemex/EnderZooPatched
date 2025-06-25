@@ -40,7 +40,7 @@ public class EntityWitherWitch extends EntityMob implements IRangedAttackMob, IE
   public static final int EGG_BG_COL = 0x26520D;
   public static final int EGG_FG_COL = 0x905E43;
 
-  private ItemStack[] drops = new ItemStack[] {
+  private final ItemStack[] drops = new ItemStack[] {
       new ItemStack(EnderZoo.itemWitheringDust),
       new ItemStack(EnderZoo.itemWitheringDust),
       new ItemStack(EnderZoo.itemWitheringDust),
@@ -59,7 +59,7 @@ public class EntityWitherWitch extends EntityMob implements IRangedAttackMob, IE
   private boolean spawned;
   private boolean firstUpdate = true;
 
-  private final List<EntityWitherCat> cats = new ArrayList<EntityWitherCat>();
+  private final List<EntityWitherCat> cats = new ArrayList<>();
   private List<NBTTagCompound> loadedCats;
   private final EntityAIRangedAttack rangedAttackAI;
   private int noActiveTargetTime;
@@ -313,7 +313,7 @@ public class EntityWitherWitch extends EntityMob implements IRangedAttackMob, IE
       return;
     }
     NBTTagList catsList = (NBTTagList) root.getTag("cats");
-    loadedCats = new ArrayList<NBTTagCompound>(catsList.tagCount());
+    loadedCats = new ArrayList<>(catsList.tagCount());
     for (int i = 0; i < catsList.tagCount(); i++) {
       NBTTagCompound catRoot = catsList.getCompoundTagAt(i);
       if(catRoot != null) {
@@ -348,7 +348,7 @@ public class EntityWitherWitch extends EntityMob implements IRangedAttackMob, IE
     EntityLivingBase currentTarget = getActiveTarget();
     EntityLivingBase hitBy = getAITarget();
     if(hitBy == null) {
-      //agro the cats if we have been hit or we have actually thrown a potion
+      //agro the cats if we have been hit, or we have actually thrown a potion
       hitBy = attackedWithPotion;
     }
     angerCats(currentTarget, hitBy);

@@ -13,19 +13,19 @@ import net.minecraft.world.World;
 
 public class EntityAIMountedAttackOnCollide extends EntityAIBase {
 
-  World worldObj;
-  EntityCreature attacker;
+  final World worldObj;
+  final EntityCreature attacker;
 
   int attackPause;
 
-  double speedTowardsTarget;
-  double speedTowardsTargetMounted;
+  final double speedTowardsTarget;
+  final double speedTowardsTargetMounted;
 
   /**
    * When true, the mob will continue chasing its target, even if it can't find
    * a path to them right now.
    */
-  boolean longMemory;
+  final boolean longMemory;
 
   PathEntity entityPathEntity;
   Class<?> classTarget;
@@ -81,9 +81,9 @@ public class EntityAIMountedAttackOnCollide extends EntityAIBase {
   @Override
   public boolean continueExecuting() {
     EntityLivingBase entitylivingbase = attacker.getAttackTarget();
-    return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!longMemory ? !getNavigator().noPath() : attacker
-        .isWithinHomeDistance(MathHelper.floor_double(entitylivingbase.posX), MathHelper.floor_double(entitylivingbase.posY),
-            MathHelper.floor_double(entitylivingbase.posZ))));
+    return entitylivingbase != null && (entitylivingbase.isEntityAlive() && (!longMemory ? !getNavigator().noPath() : attacker
+            .isWithinHomeDistance(MathHelper.floor_double(entitylivingbase.posX), MathHelper.floor_double(entitylivingbase.posY),
+                    MathHelper.floor_double(entitylivingbase.posZ))));
   }
 
   /**
