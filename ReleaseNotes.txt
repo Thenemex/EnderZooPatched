@@ -1,0 +1,195 @@
+-------------------------------------------
+Version 1.0.14
+-------------------------------------------
+
+- Lowered default chance a Dire Slime is spawned
+
+-------------------------------------------
+Version 1.0.13
+-------------------------------------------
+
+New: 
+
+- Dire Slime (HenryLoenwind)
+
+Bugs
+- #70 Wither Cat Spawning in dark areas
+- #92 Concussion Creeper Teleporting to Void
+- Spawn Config biome filters not always applied correctly
+
+-------------------------------------------
+Version 1.0.12
+-------------------------------------------
+
+Bugs
+
+- #57 Server wither cat crash
+- #70 Wither Cat Spawning in dark areas
+- #81 Fixed rendering artifacts on items / blocks
+- Fixed rendering of enderminy
+ 
+
+-------------------------------------------
+Version 1.0.11
+-------------------------------------------
+New
+
+- #74 Improve Dire Wolf howl sounds
+  - Add pack howls, where howls will group together
+  - Add configs for all howl sound parameters
+  - Limit the minimum time between howls globally
+
+Changes
+
+- New textures for enderminy and concussion creeper. Can be changed back in the config.
+
+Bugs
+
+- #72 Fix dire wolves spawning in lit bases, now follow normal wolf rules
+- #69 Fix concussion creepers teleporting you below bedrock
+- #78 Fix strange rendering on wither cats
+
+-------------------------------------------
+Version 1.0.10
+-------------------------------------------
+New
+
+- #62 Prevent teleporting the player in Runic Dungeons (HenryLoenwind)
+- #68 Added fr_FR.lang (Milobe115 )
+- #71 Added French Canadian language (DragonsLover)
+
+Bugs
+
+- #48 Added config option to resolve conflict with wither potion effect        
+
+
+-------------------------------------------
+Version 1.0.9
+-------------------------------------------
+New
+- Add russion translation
+
+Changes
+- IEnderZooMob extends IMob now
+
+Bugs
+- Fixed wither cats being invincible to mob grinders
+
+-------------------------------------------
+Version 1.0.8
+-------------------------------------------
+
+Changes
+- Added enchantment IDs to the config
+
+-------------------------------------------
+Version 1.0.7
+-------------------------------------------
+
+Bugs
+- Fixed massive Wither Witch spawn rates due to debug settings included in the default SpawnConfig_User.xml file
+
+-------------------------------------------
+Version 1.0.6
+-------------------------------------------
+
+Changes
+- #27 Mobs can now be excluded from spawning in specific dimensions. Twilight Forest excluded by default.
+
+Bugs
+- #32 Crash when spawn config invalid
+- #24 Crash Ticking Entity Wither Cat 
+
+
+-------------------------------------------
+Version 1.0.5 
+-------------------------------------------
+
+Changes
+- #23 Halved default spawn rate for Wither Witches
+- Update de_DE.lang (Vexatos)
+
+Bugs
+- #22 Server Crash 
+
+-------------------------------------------
+Version 1.0.4 
+-------------------------------------------
+Changes
+- Added Dire Wolf
+- Added config options to modify the health and attack damage of EZ and/or all mobs based on difficulty setting
+- Updated format and options for SpawnConfig_Core/User.xml
+  - Added ability to exclude biomes 
+  - Added 'any' and 'all' biome matching filters
+  - Added support for specifying biomes by name
+- Increased default Fallen Knight health to 20 (same as a Zombie, Skeleton etc)
+- #14 Rename pt_BR to pt_BR.lang (Adaptivity)
+- #17, #18 Update zh_CN.lang (Mrkwtkr)
+
+Bugs
+- #16 Fallen Steeds not killable using Cauldron protection plugin (MikeLydeamore)
+- #20 crash if fallen knight ends up in a cart
+- Fixed wander speed of fallen mount
+- Fixed Fallen Mounts loosing saddles and armor on reload.
+
+-------------------------------------------
+Version 1.0.3 
+-------------------------------------------
+Changes
+- Added Confusing Powder, dropped by Concussion Creepers
+- Added Ender Fragment, dropped by Concussion Creepers and Enderminies
+  - 5 ender fragments can be crafted into an Ender Pearl
+- Added Nausea potions can be brewed using Confusing Powder
+- Added Confusing Charges. TNT like block that causes confusion. Crafted using Confusing Powder
+- Added Ender Charges.TNT like block that randomly teleports surrounding entities. Crafted using Ender Fragments
+- Added Concussion Charges. Combined effects of Ender and Confusing Charges
+- Lower default spawn rate
+- Small nurf to Wither Cats
+- Prevented all mobs spawning in the nether (occurred with BoP) 
+- #7 Removed Concussion Creepers spawning on Mushroom Island 
+- #9 Update zh_CN.lang (Mrkwtkr)
+- #10 Update de_DE.lang (Vexatos)
+
+Bugs
+- #11 Hit box for the wither cat is too small
+- Fixed firing rate of ranged Fallen Knights. Config option fallenKnightRangedMaxAttackPause was reading the min value
+
+
+-------------------------------------------
+Version 1.0.2 
+-------------------------------------------
+Changes
+- Added Wither Cat
+- Added withering enchantments for sword and bow
+- #5 Updated zh_CN.lang (Mrkwtkr)
+- #6 Created pt_BR  (Galvanize)
+- Added WAILA support (tterrag)
+
+-------------------------------------------
+Version 1.0.1 
+-------------------------------------------
+Changes
+- Added Wither Witch, throws wither potions
+- Added Withering Powder, dropped by Wither Witch, used to brew wither potions
+- Added zh_CN.lang (Mrkwtkr)
+
+Bugs
+- #4 Server crash due to use of classes unavailable on server
+- Fixed Fallen Steeds spawning without riders
+
+-------------------------------------------
+Version 1.0.0.3 Beta
+-------------------------------------------
+- Mounted archer Fallen Knights will now attempt to stay out of melee range
+- Ground archer Fallen Knights will switch to a sword when in melee range
+- Added randomized Fallen Knights swords based on global difficulty and regional difficulty settings
+- Added GUI to change config in game
+- Added XML based spawn configs
+
+-------------------------------------------
+Version 1.0.0.0 Beta
+-------------------------------------------
+- Moved Enderminy and Concussion Creepers from EnderIO
+- Added Fallen Knights
+- Added Fallen Mounts
+- Added de_DE.lang (Xaw4)
