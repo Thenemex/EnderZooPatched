@@ -1,16 +1,16 @@
 [
 {
   "modid": "EnderZoo",
-  "name": "Ender Zoo",
-  "description": "More Mobs",
+  "name": "Ender Zoo : Patched",
+  "description": "More Mobs + Bug patches",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "http://enderio.com",
   "updateUrl": "",
   "authors": [
-    "crazypants"
+    "Thenemex"
   ],
-  "credits": "By CrazyPants",
+  "credits": "Big thanks to CrazyPants for making the mod",
   "logoFile": "",
   "screenshots": [
   ],
