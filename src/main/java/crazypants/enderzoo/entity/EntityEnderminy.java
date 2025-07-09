@@ -115,7 +115,7 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
         if(shouldAttackPlayer(entityplayer)) {
           isAggressive = true;
 
-          if(stareTimer == 0) {
+          if(stareTimer == 0 && Config.enderminyScreamWhenStaredAt) {
             worldObj.playSoundEffect(entityplayer.posX, entityplayer.posY, entityplayer.posZ, "mob.endermen.stare", 1.0F, 1.0F);
           }
 
