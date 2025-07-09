@@ -74,6 +74,7 @@ public final class Config {
   public static boolean enderminySpawnOnlyOnGrass = true;
   public static int enderminyMinSpawnY = 0;
   public static boolean enderminyOldTexture = false;
+  public static boolean enderminyScreamWhenStaredAt = true;
 
   public static final Section sectionConCreeper = new Section("Concussion Creeper", "concussionCreeper");
   public static boolean concussionCreeperEnabled = true;
@@ -243,6 +244,8 @@ public final class Config {
     enderminyMinSpawnY = config.get(sectionEnderminy.name, "enderminyMinSpawnY", enderminyMinSpawnY, "The minimum Y level at which enderminies will spawn")
         .getInt(enderminyMinSpawnY);
     enderminyOldTexture = config.get(sectionEnderminy.name, "enderminyOldTexture", enderminyOldTexture, "If true, uses the old texture for the Enderminy.")
+        .getBoolean();
+    enderminyScreamWhenStaredAt = config.get(sectionEnderminy.name, "enderminyScreamWhenStaredAt", enderminyScreamWhenStaredAt, "If false, Enderminy won't scream like and Enderman when stared at.")
         .getBoolean();
 
     concussionCreeperEnabled = config.getBoolean("concussionCreeperEnabled", sectionConCreeper.name, concussionCreeperEnabled,
