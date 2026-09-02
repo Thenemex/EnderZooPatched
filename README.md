@@ -5,3 +5,4 @@ EnderZoo : Patched (Forked by Thenemex)
 - Refactor code with modern syntax
 ### New features :
 - Added a config entry to turn off Enderminus initial scream
+- Added a config entry to tweak Enderminus maximum aggro range
