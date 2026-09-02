@@ -110,7 +110,7 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
   protected Entity findPlayerToAttack() {
 
     if(attackIfLookingAtPlayer) {
-      EntityPlayer entityplayer = worldObj.getClosestVulnerablePlayerToEntity(this, 64.0D);
+      EntityPlayer entityplayer = worldObj.getClosestVulnerablePlayerToEntity(this, Config.enderminyMaxAggroRange);
       if(entityplayer != null) {
         if(shouldAttackPlayer(entityplayer)) {
           isAggressive = true;
@@ -206,6 +206,17 @@ public class EntityEnderminy extends EntityMob implements IEnderZooMob {
     }
 
     isJumping = false;
+
+    if(entityToAttack instanceof EntityPlayer) {
+      double maxAggroRange = Config.enderminyMaxAggroRange;
+      if(entityToAttack.getDistanceSqToEntity(this) > maxAggroRange * maxAggroRange) {
+        entityToAttack = null;
+        isAggressive = false;
+        setScreaming(false);
+        stareTimer = 0;
+        teleportDelay = 0;
+      }
+    }
 
     if(entityToAttack != null) {
       faceEntity(entityToAttack, 100.0F, 100.0F);

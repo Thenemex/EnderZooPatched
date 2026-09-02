@@ -69,6 +69,7 @@ public final class Config {
   public static int enderminyAttackDamage = 10;
   public static int enderminyHealth = 20;
   public static boolean enderminyGroupAgro = true;
+  public static int enderminyMaxAggroRange = 16;
   public static int enderminyMaxGroupSize = 3;
   public static boolean enderminySpawnInLitAreas = false;
   public static boolean enderminySpawnOnlyOnGrass = true;
@@ -235,6 +236,14 @@ public final class Config {
         .getInt(enderminyHealth);
     enderminyGroupAgro = config.getBoolean("enderminyGroupAgro", sectionEnderminy.name, enderminyGroupAgro,
         "When true attacking one Enderminy will cause other Enderminies who witness the attack to attack the player as well");
+    enderminyMaxAggroRange = config.getInt(
+        "enderminyMaxAggroRange",
+        sectionEnderminy.name,
+        enderminyMaxAggroRange,
+        1,
+        128,
+        "Maximum distance in blocks at which an Enderminy can aggro and continue targeting a player"
+    );
     enderminyMaxGroupSize = config.get(sectionEnderminy.name, "enderminyMaxGroupSize", enderminyMaxGroupSize,
         "Maximum number of Enderminies that will spawn in a single group").getInt(enderminyMaxGroupSize);
     enderminySpawnInLitAreas = config.getBoolean("enderminySpawnInLitAreas", sectionEnderminy.name, enderminySpawnInLitAreas,
