@@ -14,42 +14,40 @@ import crazypants.enderzoo.config.Config;
 
 public class ItemWitheringDust extends Item {
 
-  private static final String NAME = "witheringDust";
+    private static final String NAME = "witheringDust";
 
-  public static ItemWitheringDust create() {
-    ItemWitheringDust res = new ItemWitheringDust();
-    res.init();
-    return res;
-  }
-
-  private ItemWitheringDust() {
-    setUnlocalizedName(NAME);
-    setCreativeTab(EnderZooTab.tabEnderZoo);
-    setTextureName("enderzoo:itemWitheringDust");
-    setHasSubtypes(false);
-  }
-
-  @SuppressWarnings({ "unchecked", "rawtypes" })
-  private void init() {
-    GameRegistry.registerItem(this, NAME);
-    try {
-      HashMap myPotionRequirements = ReflectionHelper.getPrivateValue(PotionHelper.class, null, "potionRequirements", "field_77927_l");
-      String mask = "0 & 1 & !2 &  3 & 0+6";
-      if (Config.useAltWitherPotionEffectMask) {
-        mask = "0 & 1 & 2 &  3 & 0+6";
-      }
-      myPotionRequirements.put(Potion.wither.getId(), mask);
-    } catch (Exception e) {
-      Log.error("ItemWitheringDust: Could not register wither potion recipe " + e);
+    public static ItemWitheringDust create() {
+        ItemWitheringDust res = new ItemWitheringDust();
+        res.init();
+        return res;
     }
-  }
 
-  @Override
-  public String getPotionEffect(ItemStack p_150896_1_) {
-    if (Config.useAltWitherPotionEffectMask) {
-      return "+0+1+2+3&4-4+13";
+    private ItemWitheringDust() {
+        setUnlocalizedName(NAME);
+        setCreativeTab(EnderZooTab.tabEnderZoo);
+        setTextureName("enderzoo:itemWitheringDust");
+        setHasSubtypes(false);
     }
-    return "+0+1-2+3&4-4+13";
-  }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    private void init() {
+        GameRegistry.registerItem(this, NAME);
+        try {
+            HashMap myPotionRequirements = ReflectionHelper.getPrivateValue(PotionHelper.class, null, "potionRequirements", "field_77927_l");
+            String mask = "0 & 1 & !2 & 3 & 0+6";
+            if (Config.useAltWitherPotionEffectMask)
+                mask = "0 & 1 & 2 & !3 & 0+6";
+            myPotionRequirements.put(Potion.wither.getId(), mask);
+        } catch (Exception e) {
+            Log.error("ItemWitheringDust: Could not register wither potion recipe " + e);
+        }
+    }
+
+    @Override
+    public String getPotionEffect(ItemStack p_150896_1_) {
+        if (Config.useAltWitherPotionEffectMask)
+            return "+0+1+2-3&4-4+13";
+        return "+0+1-2+3&4-4+13";
+    }
 
 }
